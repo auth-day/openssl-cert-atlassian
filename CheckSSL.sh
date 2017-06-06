@@ -53,6 +53,7 @@ read result
 case $result in 
 
 yes)
+	yum install java -y || apt install java -y
 	openssl s_client -connect $domain:443 < /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > public.crt 
 	echo "Type the password: changeit"
 	keytool -import -alias $domain -keystore $path -file public.crt
